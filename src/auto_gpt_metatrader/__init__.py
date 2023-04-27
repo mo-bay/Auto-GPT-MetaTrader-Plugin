@@ -415,7 +415,7 @@ class AutoGPTMetaTraderPlugin(AutoGPTPluginTemplate):
             # Assume that the user input is already in the correct format
             pass
 
-        url = f"https://mt-market-data-client-api-v1.new-york.agiliumtrade.ai/users/current/accounts/{account_id}/historical-market-data/symbols/{symbol}/timeframes/{timeframe}/candles?limit=15"
+        url = f"https://mt-market-data-client-api-v1.london.agiliumtrade.ai/users/current/accounts/{account_id}/historical-market-data/symbols/{symbol}/timeframes/{timeframe}/candles?limit=15"
         headers = {
             "auth-token": token,
             "Content-Type": "application/json"
@@ -473,7 +473,7 @@ class AutoGPTMetaTraderPlugin(AutoGPTPluginTemplate):
             # Assume that the user input is already in the correct format
             pass
 
-        url = f"https://mt-market-data-client-api-v1.new-york.agiliumtrade.ai/users/current/accounts/{account_id}/historical-market-data/symbols/{symbol}/timeframes/{timeframe}/candles?limit=100"
+        url = f"https://mt-market-data-client-api-v1.london.agiliumtrade.ai/users/current/accounts/{account_id}/historical-market-data/symbols/{symbol}/timeframes/{timeframe}/candles?limit=100"
         headers = {
             "auth-token": token,
             "Content-Type": "application/json"
@@ -494,14 +494,14 @@ class AutoGPTMetaTraderPlugin(AutoGPTPluginTemplate):
             "auth-token": token,
             "Content-Type": "application/json"
         }
-        url = f"https://mt-client-api-v1.new-york.agiliumtrade.ai/users/current/accounts/{account_id}/trade"
+        url = f"https://mt-client-api-v1.london.agiliumtrade.ai/users/current/accounts/{account_id}/trade"
         response = requests.post(
             url, headers=headers, json=trade_data)
         response = response.json()
         return response
 
     def close_all_trades(self) -> Optional[Dict[str, Any]]:
-        url2 = f"https://mt-client-api-v1.new-york.agiliumtrade.ai/users/current/accounts/{account_id}/positions"
+        url2 = f"https://mt-client-api-v1.london.agiliumtrade.ai/users/current/accounts/{account_id}/positions"
         headers = {
             "auth-token": token,
             "Content-Type": "application/json"
@@ -514,7 +514,7 @@ class AutoGPTMetaTraderPlugin(AutoGPTPluginTemplate):
                 'actionType': 'POSITION_CLOSE_ID',
                 'positionId': position['id']
             }
-            url = f"https://mt-client-api-v1.new-york.agiliumtrade.ai/users/current/accounts/{account_id}/trade"
+            url = f"https://mt-client-api-v1.london.agiliumtrade.ai/users/current/accounts/{account_id}/trade"
             response = requests.post(
                 url, headers=headers, json=trade_data)
             if response:
@@ -532,7 +532,7 @@ class AutoGPTMetaTraderPlugin(AutoGPTPluginTemplate):
             return f'No trades to close.'
 
     def get_positions(self) -> Optional[Dict[str, Any]]:
-        url2 = f"https://mt-client-api-v1.new-york.agiliumtrade.ai/users/current/accounts/{account_id}/positions"
+        url2 = f"https://mt-client-api-v1.london.agiliumtrade.ai/users/current/accounts/{account_id}/positions"
         headers = {
             "auth-token": token,
             "Content-Type": "application/json"
@@ -545,7 +545,7 @@ class AutoGPTMetaTraderPlugin(AutoGPTPluginTemplate):
             return f'Failed to get positions'
 
     def get_account_information(self) -> Optional[Dict[str, Any]]:
-        url = f"https://mt-client-api-v1.new-york.agiliumtrade.ai/users/current/accounts/{account_id}/account-information"
+        url = f"https://mt-client-api-v1.london.agiliumtrade.ai/users/current/accounts/{account_id}/account-information"
         headers = {
             "auth-token": token,
             "Content-Type": "application/json"
@@ -571,7 +571,7 @@ class AutoGPTMetaTraderPlugin(AutoGPTPluginTemplate):
             "auth-token": token,
             "Content-Type": "application/json"
         }
-        url = f"https://mt-client-api-v1.new-york.agiliumtrade.ai/users/current/accounts/{account_id}/trade"
+        url = f"https://mt-client-api-v1.london.agiliumtrade.ai/users/current/accounts/{account_id}/trade"
         response = requests.post(url, headers=headers, json=trade_data)
         if response:
             response = response.json()
